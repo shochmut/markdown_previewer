@@ -1,15 +1,51 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import { marked } from 'marked'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [text, setText] = useState('text')
+
+  const parentToChild = () => {
+
+  }
+  const childToParent = (childdata) => {
+      setText(childdata);
+    }
 
   return (
     <div className="App">
-
+      <Editor childToParent={childToParent}/>
+      <Preview parentToChild={text}/>
     </div>
   )
 }
+
+function Editor({childToParent, text}) {
+
+  return (
+    <label>
+      Markdown Editor:
+      <textarea    id='editor'
+                   text={text} 
+                   onChange={() => childToParent(event.target.value)}/>
+    </label>
+  ); 
+}
+
+
+function Preview({parentToChild}) {
+  const mark = marked.parse(parentToChild)
+  
+
+  return(
+    <div>
+      <p>{mark}</p>
+    </div>
+  )
+}
+
+
+
+
 
 export default App
