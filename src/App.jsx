@@ -34,12 +34,12 @@ function Editor({childToParent, text}) {
 
 
 function Preview({parentToChild}) {
-  const mark = marked.parse(parentToChild)
+  const html = marked.parse(parentToChild)
   
 
   return(
     <div>
-      <p>{mark}</p>
+      <p>{html}</p>
     </div>
   )
 }
