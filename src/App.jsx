@@ -7,13 +7,31 @@ let DEFAULTTEXT = `# heading element \n
 ## sub heading element \n 
 [link element](https://www.freecodecamp.org) \n 
 Inline Code: \`<div></div>\` \n 
-A Code Block: \`\`\` // this is multi-line code: \`\`\` text="hello world" \`\`\` \n 
+A Code Block: \n \`\`\` // this is multi-line code: 
+\`\`\` function App() {
+  const [text, setText] = useState(DEFAULTTEXT);
+
+  const parentToChild = () => {};
+  const childToParent = (childdata) => {
+    setText(childdata);
+  };
+
+  return (
+    <div className="App">
+      <Editor childToParent={childToParent} />
+      <Preview parentToChild={text} />
+    </div>
+  );
+}
+ \`\`\` \n 
 - And of course there are lists.
 - Some are bulleted.
    - With different indentation levels.
       - That look like this. \n
 > Block Quotes! \n 
-![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)
+![React!](src/assets/react.svg) \n
+![Binx!](src/assets/Binx.svg) \n
+You can also make text **bold**... whoa!
 ` 
 
 
@@ -35,7 +53,7 @@ function App() {
 
 function Editor({ childToParent, text }) {
   return (
-    <label>
+    <label className='editorWrap'>
       Markdown Editor:
       <textarea
         id="editor"
